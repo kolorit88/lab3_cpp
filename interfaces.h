@@ -23,14 +23,19 @@ interface IZ : IUnknown {
 };
 
 // Компонент
-class CA : public IX, public IY {
+class CA : public IX, public IY, public IZ {
+    public: ULONG m_cRef = 0;
+
     // Реализация методов класса IUnknown
+
     virtual ULONG __stdcall AddRef();
     virtual ULONG __stdcall Release();
     virtual HRESULT __stdcall QueryInterface(const IID &iid, void **ppv);
 
     virtual void __stdcall Fx();
     virtual void __stdcall Fy();
+
+
 };
 
 // Функция создания компонента

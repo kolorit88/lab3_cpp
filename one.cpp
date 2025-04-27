@@ -1,4 +1,5 @@
 
+#include <atomic>
 #include "interfaces.h"
 
 // Определение IID
@@ -23,11 +24,15 @@ const IID IID_IUnknown1 =
          {0xa6, 0xbb, 0x0, 0x80, 0xc7, 0xb2, 0xd6, 0x82}};
 
 ULONG __stdcall CA::AddRef() {
-    return 0;
+    return InterlockedIncrement(&m_cRef);
 };
 
 ULONG __stdcall CA::Release() {
-    return 0;
+    ULONG cRef = InterlockedDecrement(&m_cRef);
+    if (cRef == 0) {
+        delete this;
+    }
+    return cRef;
 };
 
 HRESULT __stdcall CA::QueryInterface(const IID &iid, void **ppv) {
@@ -56,6 +61,6 @@ void __stdcall CA::Fy() { cout << "CA::Fy" << endl; };
 // Функция создания компонента
 IUnknown* CreateInstance() {
     IUnknown* pI = static_cast<IX*>(new CA);
-    pI->AddRef();
+    cout<<pI->AddRef();
     return pI;
 };

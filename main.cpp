@@ -34,15 +34,15 @@ int main () {
         pIY->Fy(); // Использовать интерфейс IY
     };
 
-    cout << "\nКлиент: получить неподдерживаемый интерфейс" << endl;
+    cout << "\nКлиент: получил неподдерживаемый интерфейс" << endl;
     IZ* pIZ = NULL;
     hr = pIUnknown->QueryInterface(IID_IZ, (void**)&pIZ);
+
     if(SUCCEEDED(hr)) {
-        cout << "Клиент: интерфейс IZ успещно получен" << endl;
+        cout << "Клиент: интерфейс IZ успешно получен" << endl;
     } else {
         cout << "Клиент: Не удается получить доступ к интерфейсу IZ" << endl;
     };
-
 
     cout << "\nКлиент: получить указатель на IY через IX" << endl;
     IY* pIYfromIX = NULL;
@@ -54,17 +54,19 @@ int main () {
         cout << "Клиент: невозможно получить указатель на IY через IX" << endl;
     }
 
-    cout << "\nКлиент: получить указатель на IUnknown через IY" << endl;
-    IUnknown *pIUnknownFromIY = NULL;
-    hr = pIY->QueryInterface(IID_IUnknown1, (void **) &pIUnknownFromIY);
-    if (SUCCEEDED(hr)) {
-        cout << "Равны два ли два указателя?" << endl;
-        if (pIUnknownFromIY == pIUnknown) {
-            cout << "ДА" << endl;
-        } else {
-            cout << "НЕТ" << endl;
-        }
-    }
+//    cout << "\nКлиент: получить указатель на IUnknown через IY" << endl;
+//    IUnknown *pIUnknownFromIY = NULL;
+//    hr = pIY->QueryInterface(IID_IUnknown1, (void **) &pIUnknownFromIY);
+//    if (SUCCEEDED(hr)) {
+//        cout << "Равны ли два указателя?" << endl;
+//        if (pIUnknownFromIY == pIUnknown) {
+//            cout << "ДА" << endl;
+//        } else {
+//            cout << "НЕТ" << endl;
+//        }
+//    }
+
+
 
     // Удалить компонент
     delete pIUnknown;
