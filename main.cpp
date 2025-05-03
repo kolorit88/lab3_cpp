@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unknwn.h>
 #include <objbase.h>
+#include <cassert>
 
 #include "interfaces.h"
 
@@ -54,21 +55,7 @@ int main () {
         cout << "Клиент: невозможно получить указатель на IY через IX" << endl;
     }
 
-//    cout << "\nКлиент: получить указатель на IUnknown через IY" << endl;
-//    IUnknown *pIUnknownFromIY = NULL;
-//    hr = pIY->QueryInterface(IID_IUnknown1, (void **) &pIUnknownFromIY);
-//    if (SUCCEEDED(hr)) {
-//        cout << "Равны ли два указателя?" << endl;
-//        if (pIUnknownFromIY == pIUnknown) {
-//            cout << "ДА" << endl;
-//        } else {
-//            cout << "НЕТ" << endl;
-//        }
-//    }
 
-
-
-    // Удалить компонент
     delete pIUnknown;
 
     return 0;

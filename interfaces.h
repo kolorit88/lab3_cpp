@@ -5,11 +5,13 @@
 
 using namespace std;
 
+// Предварительное объявление идентификаторов интерфейса
 extern const IID IID_IX;
 extern const IID IID_IY;
 extern const IID IID_IZ;
 extern const IID IID_IUnknown1;
 
+// Интерфейсы
 interface IX : IUnknown {
     virtual void __stdcall Fx() = 0;
 };
@@ -24,19 +26,19 @@ interface IZ : IUnknown {
 
 // Компонент
 class CA : public IX, public IY, public IZ {
-    public: ULONG m_cRef = 0;
-
     // Реализация методов класса IUnknown
-
     virtual ULONG __stdcall AddRef();
+
     virtual ULONG __stdcall Release();
+
     virtual HRESULT __stdcall QueryInterface(const IID &iid, void **ppv);
 
     virtual void __stdcall Fx();
+
     virtual void __stdcall Fy();
 
-
+    virtual void __stdcall Fz();
 };
 
 // Функция создания компонента
-IUnknown* CreateInstance();
+IUnknown *CreateInstance();
